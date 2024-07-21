@@ -1,0 +1,41 @@
+{% extends 'hod_base.html' %}
+
+{% block student_content %}
+    <div class="container p-4 text-white custom-scrollbar" style="height: 80vh; overflow-y: scroll;">
+        <h3 class="text-white">Complete your Profile</h3>
+        <hr>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="" class="m-0">Name</label>
+                    <input type="text" name="name" class="form-control p-0 pl-3 text-white" value="{{hod.name}}" required style="font-size: large; background: none;">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="" class="m-0">Phone Number</label>
+                    <input type="tel" name="phone" class="form-control p-0 pl-3 text-white" value="{% if hod.phone %}{{hod.phone}}{% endif %}" required style="font-size: large; background: none;">
+                </div>
+
+                <div class="col-md-6 mt-4">
+                    <label for="" class="m-0">Department</label>
+                    <select name="department" id=""  required class="form-control p-0 pl-3 text-white" style="font-size: large; background: none; ">
+                        {% if hod.department %}
+                            <option value="{{hod.department.id}}" class="text-dark">{{hod.department}}</option>
+                        {% else %}
+                            <option value="" class="text-dark" disabled selected>Select your department </option>
+                        {% endif %}
+                        {% for d in departments %}
+                            <option value="{{d.id}}" class="text-dark">{{d.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+
+                
+                
+            </div>
+            <button class="btn btn-outline-success  mt-4" style="width: 100%;">Save</button>
+        </form>
+    </div>
+{% endblock %}

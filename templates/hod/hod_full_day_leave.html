@@ -1,0 +1,53 @@
+{% extends 'hod_base.html' %}
+
+{% block student_content %}
+    <div class="container p-4 text-white custom-scrollbar" style=" height: 80vh; overflow: scroll;">
+        <div style="min-height: 65vh; " >
+            <h3 class="text-white">Full day Leaves</h3>
+            <hr style="background-color: white;">
+            <h5 class="text-white">Todays leaves </h5>
+            {% if todays_leaves %}
+                {% for leave in todays_leaves %}
+                    <div class="row text-white m-3 p-2" style="width: 80%; border: solid 1px;">
+                        <div class="col-6 p-0 pl-3" >
+                            <p class="m-0">{{leave.student.name}}</p>
+                        </div>
+                        <div class="col-4 " style="display: flex; justify-content: center; cursor: default;">
+                            <p class=" bg-info m-0" style="border-radius: 15px; padding-left: .5em; padding-right: .5em; font-size: ;">{{leave.reason}}</p>
+                        </div>
+                        <div class="col-12">
+                            <p class="m-0 mt-2" style="font-size: small;">{{leave.note}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                    <div class="container mt-3 ">
+                        <p >No full day request today</p>
+                    </div>
+            {% endif %}
+        </div>
+
+        <div style="min-height: 65vh;">
+            <hr style="background-color: white;">
+            <h5 class="text-white">All full day leaves </h5>
+            <table class="table text-white">
+                <thead>
+                    <th>Sl.no</th>
+                    <th>Student</th>
+                    <th>Date</th>
+                    <th>Reason</th>
+                </thead>
+                <tbody>
+                    {% for leave in leaves %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{leave.student.name}}</td>
+                            <td>{{leave.leave_date}}</td>
+                            <td>{{leave.reason}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'hod_base.html' %}
+
+{% block student_content %}
+<div class="container p-4 text-white">
+    <h3 class="text-white">HOD Profile</h3>
+    <hr style="background-color: white;">
+    <div class="container">
+        <div class="row my-2">
+            <div class="col-2">Name</div>
+            <div class="col-1">:</div>
+            <div class="col-4">{{hod.name}}</div>
+        </div>
+
+        <div class="row my-2">
+            <div class="col-2">Department</div>
+            <div class="col-1">:</div>
+            <div class="col-4">{{hod.department}}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-2 my-2">Phone Number</div>
+            <div class="col-1">:</div>
+            <div class="col-4">{{hod.phone}}</div>
+        </div>
+
+        
+        <a href="{% url 'hod_profile' %}" class="btn btn-dark mt-4">Edit profile</a>
+    </div>
+    
+    
+</div>
+    
+{% endblock %}

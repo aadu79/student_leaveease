@@ -1,0 +1,50 @@
+{% extends 'student_base.html' %}
+
+{% block student_content %}
+    <div class="container p-4 text-white custom-scrollbar" style="height: 80vh; overflow-y: scroll;">
+        <h3 class="text-white">Complete your Profile</h3>
+        <hr>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="" class="m-0">Name</label>
+                    <input type="text" name="name" class="form-control p-0 pl-3 text-white" value="{{faculty.name}}" required style="font-size: large; background: none;">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="" class="m-0">Phone Number</label>
+                    <input type="tel" name="phone" class="form-control p-0 pl-3 text-white" value="{% if faculty.phone %}{{faculty.phone}}{% endif %}" required style="font-size: large; background: none;">
+                </div>
+
+                <div class="col-md-6 mt-4">
+                    <label for="" class="m-0">Department</label>
+                    <select name="department" id=""  required class="form-control p-0 pl-3 text-white" style="font-size: large; background: none; ">
+                        {% if student.department %}
+                            <option value="{{faculty.department.id}}" class="text-dark">{{faculty.department}}</option>
+                        {% else %}
+                            <option value="" class="text-dark" disabled selected>Select your department </option>
+                        {% endif %}
+                        {% for d in departments %}
+                            <option value="{{d.id}}" class="text-dark">{{d.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-6 mt-4">
+                    <label for="" class="m-0">Semester</label>
+                    <select name="semester" id="" required class="form-control p-0 pl-3 text-white" style="font-size: large; background: none; ">
+                        {% if faculty.semester %}
+                            <option value="{{faculty.semester.id}}" class="text-dark">{{faculty.semester}}</option>
+                        {% else %}
+                            <option value="" class="text-dark" disabled selected>Select Semester </option>
+                        {% endif %}
+                        {% for s in semesters %}
+                            <option value="{{s.id}}" class="text-dark">Semester {{s.semester}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-outline-success  mt-5" style="width: 100%;">Save</button>
+        </form>
+    </div>
+{% endblock %}

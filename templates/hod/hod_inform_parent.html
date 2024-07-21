@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ subject }}</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f0f0f0; margin: 0; padding: 2em;">
+
+<div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);">
+    <div style="background-color: #4caf50; padding: 10px; text-align: center; border-radius: 8px 8px 0 0;">
+        <h3 style="color: #ffffff; margin: 0;">Leave Request Approved</h3>
+    </div>
+    
+    <div style="padding: 20px;">
+        <p>Hello {{ student.guardian }},</p>
+        
+        <p>We are pleased to inform you that a leave request has been approved for {{ student.name }}.</p>
+        
+        <p>Please find the details of the leave request below:</p>
+        <ul>
+            <li><b>Student Name: {{ student.name }}</b></li>
+            <li><b>Leave Date: {{ leave.leave_date }}</b></li>
+            <li><b>Leave Time: {{ leave.leave_time|date:"g:i A" }}</b></li>
+            <li><b>Reason: {{ leave.reason }}</b></li>
+        </ul>
+        
+        
+        <p>If you have any questions or concerns, please feel free to contact us.</p>
+        
+        <p style="margin-top: 2em;">Approved by:</p>
+        <div>
+            <p style="margin: 0;">{{hod.name}}</p>
+            <p style="margin: 0;">HOD {{hod.department}}</p>
+            <a href="tel:{{hod.phone}}"><p style="margin: 0;">{{hod.phone}}</p></a>
+            
+        </div>
+        
+    </div>
+</div>
+
+</body>
+</html>

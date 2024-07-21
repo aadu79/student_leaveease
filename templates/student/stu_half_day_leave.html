@@ -1,0 +1,126 @@
+{% extends 'student_base.html' %}
+{% load static %}
+{% block student_content %}
+    <div class="container p-4 text-white custom-scrollbar" style="height: 80vh; overflow-y: scroll;">
+        {{today_leave.leave_date}}
+        {% if today_leave %}
+        <div>
+            <h3 class="text-white">You requested leave for today</h3>
+            <hr  style="background-color: white;">
+
+            <div class="conatiner  bg-white p-4 login_conatin text-dark" style="max-width: 80%; border: solid; margin-left: 4em;">
+                <div class="row" >
+                    <div class="col-md-6">
+                        Track status of your leave request<hr>
+
+                        <h5>Time : {{today_leave.leave_time|date:"g:i A"}}</h5>
+                        <h5>Reason: {{today_leave.reason}}</h5>
+                        <h5>Faculty Approval: {% if today_leave.faculty_approval %}Approved{% else %} Waiting {% endif %}</h5>
+                        <h5>HOD Approval: {% if today_leave.hod_approval %}Approved{% else %} Waiting {% endif %}</h5>
+                        {% if today_leave.qr_code %}
+                            <a href="{{ today_leave.qr_code.url }}" download="gate_pass_{{ today_leave.student.name }}.png">Download Gate Pass</a>
+                        {% else %}
+                        <a href="{% url 'delete_leave' today_leave.id %}" onclick="return confirm('Are you sure you want to cancel this request? \nAll the related progress will be deleted.');">Want to cancel this request</a>
+                        {% endif %}
+                    </div>
+
+                    {% if today_leave.hod_approval %}
+                        <div class="col-md-6" style="display: flex; justify-content: center;" >
+                            <img src="{{today_leave.qr_code.url}}" alt="" style="width: 15em;">
+                        </div>
+                    {% else %}
+                        <div class="col-md-6" style="display: flex; justify-content: center;" >
+                            <div class="text-center p-4" style="width: 15em;height: 14em; border: solid 1px rgba(0, 0, 0, 0.486); display: flex; flex-direction: column; justify-content: center;">
+                                When HOD Approve your leave request your gate-pass will display here
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div> 
+            <button id="toggleFormButton" class="btn btn-primary my-4 btn-sm" style="background: none;">Request for another leave</button>
+           
+        </div>
+        {% endif %}
+        
+        <div id="leaveFormSection" {% if today_leave %} style="display: none;" {% endif %}>
+
+        <h3 class="text-white">Request for half day leave (Gate pass)</h3>
+            <hr  style="background-color: white;">
+
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="" class="m-0">Date and time</label>
+                        <input type="datetime-local" name="leave_date" class="form-control p-0 pl-3 text-white"  required style="font-size: large; background: none;">
+                    </div>
+                    
+
+                    <div class="col-md-6">
+                        <label for="" class="m-0">Reason</label>
+                        <select name="reason" id="" class="form-control p-0 pl-3 text-white" value="{{student.name}}" required style="font-size: large; background: none;">
+                            <option value="" class="text-dark" disabled selected>Select the reason for leave </option>
+                            <option value="Medical Leave" class="text-dark">Medical Leave</option>
+                            <option value="Personal Leave" class="text-dark">Personal Leave</option>
+                            <option value="Academic Leave" class="text-dark">Academic Leave</option>
+                            <option value="Family Emergency" class="text-dark">Family Emergency</option>
+                            <option value="Extracurricular Activity" class="text-dark">Extracurricular Activity</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mt-4">
+                        <label for="" class="m-0">Note </label>
+                        <textarea name="note" id="" class="form-control p-0 pl-3 text-white" value="{{student.name}}"  style="font-size: large; background: none;"></textarea>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: space-around; margin-top: 2em; max-width: 40%;">
+                    
+                    
+                    <a href="" class="btn btn-danger btn-sm">Cancel</a>
+                    <button type="submit" class="btn btn-success btn-sm">Done</button>
+                </div>
+                
+            </form>
+        </div>
+
+
+        {% if leaves %}
+        <div style="min-height: 70vh;">
+            <hr style="background-color: white; margin-top: 4em;">
+            <h3 class="text-white " >Recente leaves</h3>
+            <table class="table table-borderless  text-white">
+                <thead>
+                    <th>Sl.no</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Reason</th>
+                    <th>Note</th>
+                </thead>
+                <tbody>
+                    {% for leave in leaves %}
+                        <tr>
+                            <td style="vertical-align: middle;">{{forloop.counter}}</td>
+                            <td  style="vertical-align: middle;">{{leave.leave_date}}</td>
+                            <td  style="vertical-align: middle;">{{leave.leave_time|date:"g:i A"}}</td>
+                            <td  style="vertical-align: middle;">{{leave.reason}}</td>
+                            <td style="max-width: 13em;">{{leave.note}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+        
+    </div>
+    <script>
+        document.getElementById('toggleFormButton').addEventListener('click', function() {
+            var formSection = document.getElementById('leaveFormSection');
+            if (formSection.style.display === 'none') {
+                formSection.style.display = 'block';
+            } else {
+                formSection.style.display = 'none';
+            }
+        });
+    </script>
+    
+{% endblock %}

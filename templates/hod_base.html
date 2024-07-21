@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container-fluid" >
+        <div class="row" >
+            <div class="col-md-3" style="height: 80vh; overflow-y: scroll; background-color: rgba(33, 35, 37, 0.616);">
+                <div class="container mt-5">
+                    <h5 class="text-white">HOD </h5>
+                </div><hr style="border: solid 1px rgb(184, 183, 183);">
+                <div class="container ">
+                    <h5 class="text-white">Choose category</h5>
+                </div>
+                <hr>
+                <div class="container " style="border: ;">
+                    
+                    <a href="{% url 'hod_dashboard' %}"  >
+                        <div class="container p-1 sidebar" >
+                            <p class="m-1 text-white" >Profile </p>
+                        </div>
+                    </a> 
+
+                    <a href=""  id="toggle-leave-requests">
+                        <div class="container p-1 sidebar" >
+                            <p class="m-1 text-white" >Leave requests</p>
+                        </div>
+                    </a>
+
+                    <div class="" id="leave-requests" style="max-height: 0; overflow: hidden; background-color: rgba(240, 248, 255, 0.137); transition: max-height 0.3s ease; border-bottom: solid 1px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;">
+                        <a href="{% url 'hod_full_day' %}"  >
+                            <div class="container p-1 sidebar" >
+                                <p class="m-1 text-white" >Full day leave request </p>
+                            </div>
+                        </a>
+                            
+                        <a href="{% url 'hod_half_day' %}">
+                            <div class="container p-1 sidebar" >
+                                <p class="m-1 text-white" >Half day leave </p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div class="col-md-9" style="min-height: 80vh;">
+                {% block student_content %}
+                {% endblock %}
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("toggle-leave-requests").addEventListener("click", function(event) {
+            event.preventDefault();
+            var leaveRequestsDiv = document.getElementById("leave-requests");
+            console.log(leaveRequestsDiv)
+            leaveRequestsDiv.style.maxHeight = leaveRequestsDiv.style.maxHeight === "0px" ? leaveRequestsDiv.scrollHeight + "px" : "0px";
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,124 @@
+.index-pg {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.index-pg img {
+    width: 100%;
+    height: auto;
+    animation: fadeIn .5s ease-in-out;
+}
+
+.index-pg .admin-overlay{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40em;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgb(180, 186, 190);
+    color: rgb(3, 3, 3); /* Set text color to black or another suitable color for readability */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Optional: Add text shadow for better readability */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    border: solid black 1px;
+    z-index: 3;
+    animation: popup-animation 0.8s ease-out;
+}
+
+@keyframes popup-animation {
+    0% {
+        transform: translate(-50%, -50%) scale(0.1);
+        opacity: 0;
+    }
+    
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.index-pg .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    background-image: linear-gradient(45deg, rgba(9, 9, 10, 0.144), blue); /* Rotated gradient */
+    padding: 20px;
+    border-radius: 5px;
+    color: rgb(255, 255, 255); /* Set text color to black or another suitable color for readability */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Optional: Add text shadow for better readability */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 2s ease-in-out; /* Apply fade-in animation */
+}
+
+.index-pg .text-overlay_day {
+    position: absolute;
+    top: 84%;
+    left: 50%;
+    width: 60em;
+    transform: translate(-50%, -50%);
+    background-image: radial-gradient(rgba(15, 29, 51, 0.644),rgba(46, 34, 46, 0.452) ); 
+    padding: 20px;
+    border-radius: 5px;
+    color: rgb(255, 255, 255); /* Set text color to black or another suitable color for readability */
+    text-shadow: 5px 2px 2px rgba(0, 0, 0, 0.774); /* Optional: Add text shadow for better readability */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 4s ease-in-out; /* Apply fade-in animation */
+}
+
+
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.banner-head {
+    font-size: 50px;
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+    animation: slideInLeft 1s ease-in-out; /* Apply slide-in animation */
+}
+
+/* Keyframes for slide-in animation */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.banner-text {
+    letter-spacing: 3px;
+    animation: fadeInUp 1.5s ease-in-out; /* Apply fade-in up animation */
+}
+
+/* Keyframes for fade-in up animation */
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

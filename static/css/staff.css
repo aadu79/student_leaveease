@@ -1,0 +1,98 @@
+.staff_dash_contain{
+    border-bottom: solid rgba(0, 0, 0, 0.575); 
+    background-color: rgba(18, 119, 119, 0.106); 
+}
+
+.details_att{
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0.5s ease-out;
+}
+
+.month_overlay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2;
+    
+}
+
+@keyframes popup-animation {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+    }
+    
+    90% {
+        transform: translate(-50%, -50%) scale(1.01);
+        opacity: .99;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+
+
+.month_overlay .overlay_content{
+    background-color: white;
+    width: 60%;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    animation: popup-animation .5s ease-out;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    width: 1em;
+    height: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1; /* Ensures the text inside the button is centered */
+    border-radius: 5%; /* Optional: Make the hover background circular */
+    outline: none;
+}
+
+.close-btn:hover {
+    background-color: rgba(255, 0, 0, 0.212);
+    font-size: 2.1em;
+}
+
+.admin_nav{
+    width: 100%; 
+    border: solid 1px rgba(14, 2, 2, 0.438);
+    height: 2em;
+    background-color: rgba(0, 255, 255, 0.466);
+    text-decoration: none;
+}
+
+.admin_nav:hover{
+    background-color: rgba(0, 255, 255, 0.203);
+    text-decoration: none;
+}
+
+.admin_nav.active{
+    background-color: rgba(0, 255, 255, 0.003);
+    border-bottom: 0;
+    border-radius: 3px;
+}

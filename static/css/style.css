@@ -1,0 +1,97 @@
+@font-face {
+    font-family: 'Kanit';
+    src: url('../fonts/Kanit-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('../fonts/Kanit-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('../fonts/Kanit-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Kanit';
+    src: url('../fonts/Kanit-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+body{
+    background-color: #1a1a1b94;
+    font-family: 'Kanit', sans-serif;
+}
+
+.nav_custom{
+    
+}
+
+.navbar .dropdown:hover > .dropdown-menu {
+    display: block;
+    margin-top: 0; /* Remove the gap so it looks seamless */
+}
+
+
+.ele_container{
+    /* background-color: rgb(11, 40, 153); */
+    background-color: #4a17bd;
+    width: 98%;
+    min-height: 70vh;
+}
+
+
+
+
+
+.login-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    margin: 0;
+    overflow: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.login-section::-webkit-scrollbar { 
+    display: none; 
+}
+
+
+.login-imgcontainer{
+    width: 30%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.login-img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.login-container{
+    width: 30%;
+    border-radius: 10px;
+    border-top: solid blue 1px;
+}
+
+.login-container .h3{
+    font-size: large;
+}
+
+.login-btn{
+    width: 100%;
+}
+

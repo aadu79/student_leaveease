@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container text-center" style="display: flex; flex-direction: column; justify-content: center; min-height: 70vh;">
+        
+        <a href="{% url 'login' %}?usertype=Student" class="m-3" style="text-decoration: none;">
+            <div class="container btn-div" >
+                <p style=" margin-bottom: 0; text-decoration: none;">Student Login </p>
+            </div>
+        </a>
+        <a href="{% url 'login' %}?usertype=Faculty" class="m-3" style="text-decoration: none;">
+            <div class="container btn-div" >
+                <p style=" margin-bottom: 0; text-decoration: none;">Faculty Login </p>
+            </div>
+        </a>
+        <a href="{% url 'login' %}?usertype=HOD" class="m-3" style="text-decoration: none;">
+            <div class="container btn-div" >
+                <p style=" margin-bottom: 0; text-decoration: none;">HOD Login</p>
+            </div>
+        </a>
+    </div>
+    
+{% endblock %}

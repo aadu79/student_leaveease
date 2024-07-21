@@ -1,0 +1,101 @@
+{% extends 'hod_base.html' %}
+
+{% block student_content %}
+    <div class="container p-4 text-white custom-scrollbar" style=" height: 80vh; overflow: scroll;">
+        <div style="min-height: 65vh; " >
+            <h3 class="text-white">Half day Leave requests</h3>
+            <hr style="background-color: white;">
+            <h5 class="text-white">Todays Requests </h5>
+            {% if todays_leaves %}
+                {% for leave in todays_leaves %}
+                    <div class="row text-white m-3 p-2 fac_half_div {% if leave.hod_approval %} approved {% endif %} "  ">
+                        <div class="col-6 p-0 pl-3" >
+                            <p class="m-0" style="font-size: larger;">{{leave.student.name}}</p>
+                        </div>
+                        <div class="col-4 " style="display: flex; justify-content: center; cursor: default;">
+                            <p class=" bg-info m-0" style="border-radius: 15px; padding-left: 1em; padding-right: 1em; font-size: larger;">
+                                {{leave.reason}}
+                            </p>
+                        </div>
+
+                        <div class="col-12">
+                            <p class="m-0 mt-2" style="font-size: large;">Semester {{leave.student.semester}} - {{leave.student.department}} </p>
+                        </div>
+                    
+                        
+                        <div class="col-12">
+                            <p class="m-0 mt-2" style="">{{leave.note}}</p>
+                        </div>
+                        <div class="col-12">
+                            <p class="m-0 mt-2" style="">{{leave.leave_date}}</p>
+                        </div>
+                        <div class="col-12">
+                            <p class="m-0 mt-2" style="">{{ leave.leave_time|date:"g:i A" }}</p>
+                        </div>
+
+                        {% if  leave.hod_approval %}
+                            <div class="col-md-8 mt-3">
+                                <button disabled class="btn btn-light " >Approved </a>
+                            </div>
+                        {% else %}
+                            <div class="col-md-8 mt-3">
+                                <a href="{% url 'hod_half_day_approve' leave.id %}" class="btn btn-outline-light">Approve and Generate QR Code</a>
+                            </div>
+                        {% endif %}
+                        <div class="col-3 text-right">
+                            Contact student : <a href="tel:{{leave.student.phone}}" class="text-white">{{leave.student.phone}}</a>,  <a href="email:{{leave.student.user.email}}" class="text-white">{{leave.student.user.email}}</a>
+
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                    <div class="container mt-3 ">
+                        <p >No full day request today</p>
+                    </div>
+            {% endif %}
+                
+            
+        </div>
+
+        <div style="min-height: 65vh;">
+            <hr style="background-color: white;">
+            <h5 class="text-white">All half day leaves </h5>
+            <table class="table text-white">
+                <thead>
+                    <th>Sl.no</th>
+                    <th>Student</th>
+                    <th>Date</th>
+                    <th>Reason</th>
+                    <th>Faculty </th>
+                    <th>HOD </th>
+                </thead>
+                <tbody>
+                    {% for leave in leaves %}
+                        <tr>
+                            <td style="vertical-align: middle;">{{forloop.counter}}</td>
+                            <td style="vertical-align: middle;">{{leave.student.name}}</td>
+                            <td style="vertical-align: middle;">{{leave.leave_date}}</td>
+                            <td style="vertical-align: middle;">{{leave.reason}}</td>
+                            <td style="vertical-align: middle;">
+                                {% if leave.faculty_approval %}
+                                    Approved
+                                {% else %}
+                                    Waiting . . . <br>
+                                    <a href="{% url 'fac_approval' leave.id %}" class="btn btn-outline-light btn-sm" style="border: 0;">Approve Now</a>
+                                {% endif %}
+                            </td>
+                            <td >
+                                {% if leave.hod_approval %}
+                                    Approved
+                                {% else %}
+                                    Waiting . . . <br>
+                                    <a href="{% url 'hod_half_day_approve' leave.id %}" class="btn btn-outline-light btn-sm" style="border: 0;">Approve Now</a>
+                                {% endif %}</td>
+                                
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

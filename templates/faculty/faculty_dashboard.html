@@ -1,0 +1,38 @@
+{% extends 'faculty_base.html' %}
+
+{% block student_content %}
+<div class="container p-4 text-white">
+    <h3 class="text-white">Faculty Profile</h3>
+    <hr style="background-color: white;">
+    <div class="container">
+        <div class="row my-2">
+            <div class="col-2">Name</div>
+            <div class="col-1">:</div>
+            <div class="col-4">{{faculty.name}}</div>
+        </div>
+
+        <div class="row my-2">
+            <div class="col-2">Department</div>
+            <div class="col-1">:</div>
+            <div class="col-4">{{faculty.department}}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-2 my-2">Semester</div>
+            <div class="col-1">:</div>
+            <div class="col-4">{{faculty.semester}}</div>
+        </div>
+
+        <div class="row">
+            <div class="col-2 my-2">Phone Number</div>
+            <div class="col-1">:</div>
+            <div class="col-4">{{faculty.phone}}</div>
+        </div>
+       
+        <a href="{% url 'faculty_profile' %}" class="btn btn-dark mt-4">Edit profile</a>
+    </div>
+    
+    
+</div>
+    
+{% endblock %}

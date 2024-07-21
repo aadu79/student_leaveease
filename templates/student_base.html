@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container-fluid" >
+        <div class="row" >
+            <div class="col-md-3" style="height: 80vh; overflow-y: scroll; background-color: rgba(33, 35, 37, 0.616);">
+                <div class="container mt-5">
+                    <h5 class="text-white">Student </h5>
+                </div><hr style="border: solid 1px rgb(184, 183, 183);">
+                <div class="container ">
+                    <h5 class="text-white">Choose category</h5>
+                </div>
+                <hr>
+                <div class="container " style="border: ;">
+                    
+                    <a href="{% url 'student_dashboard' %}"  >
+                        <div class="container p-1 sidebar" >
+                            <p class="m-1 text-white" >Profile </p>
+                        </div>
+                    </a> 
+
+                    <a href="{% url 'stu_full_day_leave' %}"  >
+                        <div class="container p-1 sidebar" >
+                            <p class="m-1 text-white" >Full day leave request </p>
+                        </div>
+                    </a>
+                        
+                    <a href="{% url 'stu_half_day_leave' %}"  >
+                        <div class="container p-1 sidebar" >
+                            <p class="m-1 text-white" >Half day leave </p>
+                        </div>
+                    </a>
+                    
+                </div>
+                
+            </div>
+            <div class="col-md-9" style="min-height: 80vh;">
+                {% block student_content %}
+                {% endblock %}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
